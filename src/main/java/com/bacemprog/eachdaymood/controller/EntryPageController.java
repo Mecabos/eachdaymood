@@ -33,6 +33,26 @@ public class EntryPageController {
         this.entryPageMapper = entryPageMapper;
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ApiMethod(description = "Get entry page with provided id")
+    public EntryPageDtoForRead get(@ApiPathParam(name = "id") @PathVariable int id){
+        return entryPageMapper.convertToEntryPageDtoForRead(entryPageService.get(id));
+    }
+
+    @RequestMapping(value = "/current", method = RequestMethod.GET)
+    @ApiMethod(description = "Get this year's entry page")
+    public EntryPageDtoForRead getCurrent(){
+        return entryPageMapper.convertToEntryPageDtoForRead(entryPageService.getCurrent());
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @ApiMethod(description = "Get all entry pages without associated entries")
+    public List<EntryPageDtoForReadWithoutEntries> getAll(){
+        return entryPageService.getAll().stream()
+                .map(entryPage -> entryPageMapper.convertToEntryPageDtoForReadWithoutEntries(entryPage))
+                .collect(Collectors.toList());
+    }
+
     @RequestMapping(value = "/all/entries", method = RequestMethod.GET)
     @ApiMethod(description = "Get all entry pages with associated entries")
     public List<EntryPageDtoForRead> getAllWithEntries(){
@@ -48,14 +68,6 @@ public class EntryPageController {
         EntryPage entryPage = entryPageMapper.convertToEntity(entryPageDto);
         EntryPage newEntryPage = entryPageService.saveNewWithEntries(entryPage);
         return entryPageMapper.convertToEntryPageDtoForReadWithoutEntries(newEntryPage);
-    }
-
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    @ApiMethod(description = "Get all entry pages without associated entries")
-    public List<EntryPageDtoForReadWithoutEntries> getAll(){
-        return entryPageService.getAll().stream()
-                .map(entryPage -> entryPageMapper.convertToEntryPageDtoForReadWithoutEntries(entryPage))
-                .collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)

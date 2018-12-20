@@ -8,7 +8,11 @@ import java.util.List;
 public interface EntryPageService {
 
     EntryPage saveNewWithEntries(EntryPage entryPage);
+    EntryPage get(int id);
     List<EntryPage> getAll();
+    EntryPage getCurrent();
+    EntryPage createNewWithEntries();
     EntryPage findByStartAndEndDate (LocalDateTime startDate, LocalDateTime endDate);
     EntryPage update(int id, EntryPage entryPage);
+
 }

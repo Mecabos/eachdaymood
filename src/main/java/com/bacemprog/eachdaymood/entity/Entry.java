@@ -22,7 +22,7 @@ public class Entry {
     @Enumerated(EnumType.STRING)
     private EventType event = EventType.Normal;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "entry_page_id")
     private EntryPage entryPage;
 

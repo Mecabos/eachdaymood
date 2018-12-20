@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 
 public class EntryDtoForRead {
 
+    private int id;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime date;
     private String title = "";
@@ -15,6 +16,14 @@ public class EntryDtoForRead {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime lastUpdateDate;
     private EventType event = EventType.Normal;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public LocalDateTime getDate() {
         return date;

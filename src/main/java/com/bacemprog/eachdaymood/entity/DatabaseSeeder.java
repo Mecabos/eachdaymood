@@ -36,8 +36,8 @@ public class DatabaseSeeder implements CommandLineRunner {
         LocalDateTime page4Start = DateUtil.parseDate("17-08-2017 00:00");
         LocalDateTime page4End = DateUtil.parseDate("15-08-2018 00:00");
 
-        LocalDateTime page5Start = DateUtil.parseDate("16-08-2018 00:00");
-        LocalDateTime page5End = DateUtil.parseDate("31-12-2018 00:00");
+        /*LocalDateTime page5Start = DateUtil.parseDate("16-08-2018 00:00");
+        LocalDateTime page5End = DateUtil.parseDate("31-12-2018 00:00");*/
 
         if (entryPageService.findByStartAndEndDate(page1Start,page1End) == null)
             entryPageService.saveNewWithEntries(new EntryPage(page1Start,page1End));
@@ -47,7 +47,7 @@ public class DatabaseSeeder implements CommandLineRunner {
             entryPageService.saveNewWithEntries(new EntryPage(page3Start,page3End));
         if (entryPageService.findByStartAndEndDate(page4Start,page4End) == null)
             entryPageService.saveNewWithEntries(new EntryPage(page4Start,page4End));
-        if (entryPageService.findByStartAndEndDate(page5Start,page5End) == null)
-            entryPageService.saveNewWithEntries(new EntryPage(page5Start,page5End));
+        /*if (entryPageService.findByStartAndEndDate(page5Start,page5End) == null)
+            entryPageService.saveNewWithEntries(new EntryPage(page5Start,page5End));*/
     }
 }
